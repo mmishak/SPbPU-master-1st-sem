@@ -7,10 +7,10 @@ myFoldr f x []     = x
 myFoldr f x (head:list) = f head (myFoldr f x list) 
 
 myMap :: (a -> b) -> [a] -> [b]
-myMap f a = myFoldl (\list h -> list ++ [f h]) [] a
+myMap f a = myFoldr (\h list -> (f h) : list) [] a
 
 myFlatMap :: (a -> [b]) -> [a] -> [b] 
-myFlatMap f a = myFoldl (\list h -> list ++ f h) [] a
+myFlatMap f a = myFoldr (\h list -> (f h) ++ list) [] a 
 
 myConcat :: [a] -> [a] -> [a]
 myConcat a b = myFoldl (\list h -> list ++ [h]) a b 
