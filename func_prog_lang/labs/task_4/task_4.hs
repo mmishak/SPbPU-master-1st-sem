@@ -14,10 +14,10 @@ instance Monad FunMonad where
 
 
 
--- Далее ввод в консоли
+-- Next: console input
 
 --
--- Изпользование, как функтора
+-- Functor test
 --
 myMonad  = FunMonad $ \() -> 3
 myMonad' = fmap (*2) myMonad
@@ -26,7 +26,7 @@ fun myMonad ()      -- 3
 fun myMonad' ()     -- 6
 
 --
--- Использование, как аппликативного функтора
+-- Applicative functor test
 --
 myMonad   = FunMonad $ \() -> 3
 myMonad'  = FunMonad $ \() -> (^2)
@@ -35,7 +35,7 @@ myMonad'' = myMonad' <*> myMonad
 fun myMonad'' ()    -- 9
 
 --
--- Использование, как монады
+-- Monad test
 --
 myMonad  = FunMonad $ \() -> 3
 myMonad' = myMonad >>= (\x -> FunMonad $ \() -> x^2)
